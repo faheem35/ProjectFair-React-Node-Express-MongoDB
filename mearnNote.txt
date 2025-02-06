@@ -881,12 +881,31 @@
             -HTTP response using axios will always return object with predefined keys(data(server,response),status,)
             -create services folder inside src of your react app
 
-      17)Data sharing b/w components in react(b/w siblings)
+      17)Data sharing b/w components in react
             -State Lifting: data sharing is using props. we will create state in common parent of data to be shared compionents. share state updation function one component and state to another component.      
+            -using Redux library
+            -using Context API
 
-        --------------------------------------------------------------------------------------------------------
+      ---------------------------------------------------------------------------------------------------
+                                               Context API - Data sharing methods in React
+      --------------------------------------------------------------------------------------------------  
+      1.Avoid props drilling while sharing data between components
+      2.To share data it uses context of react, with the help of context we can share data inside.     
+      3.steps to perform data sharing using context API
+            -create context : use createContext() method in react
+            -use provider of context to share data to the components, provider value key will help context to share data, we can pass value as object.
+            -To access context from component: useContext hook, useContext(context_name) we give the data shared via context.
+      4.Create a folder for contexts 
+        -inside folder create react component for perform data sharing using context 
+        -create context and export it 
+        -create state inside component
+        - use context provider provide the state as its value to the component children
+        -use children props inside the component to get all children of it
+        -wrap the component inside root component of react app inside main.jsx file    
+
+        ---------------------------------------------------------------------------------------------------
                                                JSON server creation
-         ---------------------------------------------------------------------------------------------------------           
+         --------------------------------------------------------------------------------------------------         
 
 1. create a server folder to store json file
 2. create a package.json (npm configuration file)file inside server folder : use command: npm init -y
@@ -967,9 +986,9 @@
               -action with argument: dispatch-function(action-name(arg1,...))  , to access argumens of action in slice reduce function it uses its second argument which is an object with 2 keys payload and type. payload will give the argumnet feom action dispatched by the component
 
 
- -----------------------------------------------------------------------------------------------------------
-                           MOGODB - DATABASE
-------------------------------------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------------------------------
+                                  MOGODB - DATABASE
+-----------------------------------------------------------------------------------------------------------
 
           1.DATABASE used to store and manage data permanantly(firebase, mysql,sql,maaccess, mongodb, oracle,..)
           2.MongoDB : is a nosql database, data stored as JSON documnets ({"key":value}).  it stored in memory as BSON, To store multiple JSON documentis known as Collection.
@@ -991,6 +1010,227 @@
                -MongoDB Enterprise: The subscription-based, self-managed version of MongoDB
                -MongoDB Community : The source-available, free-to-use, and self-managed version of MongoDB
 
-          5.MongODBShell,Mongosh :  
-               
+          5.MongODBShell,Mongosh :  is terminal used to write mongodb codes.
+          6.Collection: used to store json documents., To name a collection use only small letters and its in plural format.
+          7.MongoDB generate a unique value to identify each collection using _id key and its value is a hexadecimal number.
+          8.CRUD operations performed in MongoDB
+               i)To get/read a single document from MongoDB collection: use findOne({key:value}). it will return the entire document when the key and value is present in collection otherwise it will return "null".
+                     - To show collections: use    show collections
+                     - eg: db.users.findOne({email:"faheem@gmail.com"})   , here users is collectionName. alwalys use db(database)
 
+               ii)find(): to get/read all documnet from MongoDB collection and which will return the all documentts present in the collection.
+
+                        -eg:db.users.find()      
+                        -cls to clear terminal
+
+               iii)insertOne({key:value}): to insert a single document to MongoDB collection         
+               iv)insertMany([{key:value},{key:value}]): to insert multiple document to MongoDB collection     
+
+               v)countDocuments(): to get total count of documents in a collecton.
+                           -eg:db.users.countDocuments()
+               vi)limit(count): to limit documents while getting from a collection.
+                          -eg:db.users.find().limit(3)
+               vii)skip(count): to skip documents while getting from a collection. 
+                           -eg:db.users.find().skip(5)        
+               viii)sort({key:1/-1}): used to sort documents while getting from a collection. 1 refers to accescending order. -1 for descending order.     
+                            -eg:db.users.find().skip(5).sort({uname:1}) 
+
+                      -condition based: find(key:{$gt/$gte/$lt/$lte/$eq/$neq/$exists/$regex}) 
+                            -eg: if we need to fetch users whose age greather than 24.
+                                 command: db.users.find({age:{$gt:24}}) 
+                            -eg: display only the userName existed datas : exists means all the existed ones 
+                                 db.users.find({userName:{$exists:true}})
+                            -eg: display the username that includes letter "m"
+                                 db.users.find({userName:{$regex:"m"}})  :regex means reg.expression
+
+                           -eg:  compare : $expr :  expr means expression
+                                 db.users.find({$expr:{$gt:['$debt','$balance']}})
+                         
+               ix)in-sensitive :to make the data non-sensitive we use $options
+                           eg:   db.users.find({userName:{$regex:"M",$options:"i"}})
+             
+               x)updateOne({key:value},{$set:{key:value}})   : to update a single document to mongodb collection.        
+                  -we can update statements:$set,$inc,$push,$pull
+                      eg: set age to 30::    db.users.updateOne({uname:"Rini"},{$set:{age:30}})
+                      eg: inrement age by 3 ::  db.users.updateOne({uname:"Rini"},{$inc:{age:3}})
+                      eg: if we need to update data in to an array: db.users.updateOne({uname:"Max"},{$push:{hobbies:"swimming"}})
+               xi)updateMany       
+               xii)deleteOne({key:value}): to delete a single document  
+                     eg:db.users.deleteOne({uname:"Max"})    
+               xiii)deleteMany({key:value}): to delete a multiple document 
+                     eg: db.users.deleteMany({uname:{$exists:true}})
+
+          9.Aggregation: used to combine / joining two collection in mongodb
+              -using $lookup:
+
+             -syntax: 
+                 {
+                  $lookup:
+                   {
+                     from: <collection to join>,
+                     localField: <field from the input documents>,
+                     foreignField: <field from the documents of the "from" collection>,
+                     as: <output array field>
+                  }
+               }
+
+
+               eg:db.users.aggregate({
+                  $lookup:
+                   {
+                     from: "projects",
+                     localField: "email",
+                     foreignField: "userid",
+                     as: "allProjects"
+                  }
+               })
+
+
+
+ ---------------------------------------------------------------------------------------------------------
+                Server side/Backend : used to resolve the client/front end request
+ ---------------------------------------------------------------------------------------------------------
+
+   Node js: provide a runtime environment for js outside the browser.
+ ------------------------------------------------------------------------
+    1.Is a free open-source, cross platform runtime environment that lets us to create servers (used to resolve multiple client request), web app, command line tools, scripts.
+    2.Features: 
+          -Extremely fast 
+          -Highly scalable
+          -Asynchronous functions
+    3.Node JS global objects: Objects can be accessed throughout node app without importing it. 
+                eg: "process" objects :: "environmental variable" in process used to store system configuration/ secret data/ password of an application
+    4.Node JS Module System: used to share data from one file to another file using "CommonJSModule" System
+           -require("package_name/file_path"): to import data from one file /package to another.
+           -module.exports / exports keyword : to export data from a file     
+           -predefined/ Built in modules in Node JS
+              -fs module: file system module, handles file system of a computer
+              -http module: used to create http server
+              -https module: used to create https server
+              -events module: manage userdefined events
+              -crypto module: secure data handle
+     5. Execution model: Event driven , non blocking I/O model, optimised asynchronous task.
+     6.API Access: access to system level API (file system, network, process) 
+     7.Working of Node JS: used to resolve client request and send response while working with single Threaded. 
+         -non-Blocking 
+         -Asynchronous functions                   
+
+
+ Express js: Node JS Framework, used to server creation
+ ------------------------------------------------------------------------
+ 1.uses in client side appliaction to create server with Node JS features.
+ 2.steps to create EXPRESS server for resolving client request
+     -Create a server folder for server application.
+     -create package.json file inside server folder, use command: npm init -y
+     -update package.json file "script" key value as the following object, {"start":"node index.js"} and remove its test key and value from it
+     -Install packages needed to create node server app
+         -express package : used to create server - (npm i express
+         -cors package : used to enable corss origin resource sharing - (npm i cors
+         -dotenv package: used to load content .env file into process object - (npm i dotenv
+         -mongoose package: used to communicate b/w nodejs app and mongoDB
+         -jsonwebtoken:used for authorization
+         -multer:handle form/multipart data
+     -Create .env file in server folder, which is uesd to store environmental variable of a project/app(which stores secure datas of the project)
+     -Create .gitignore file in server folder, which is used to store files/folders to be ignored while adding to git and add node_modules and .env    
+     -Create index.js file to define express server for resolving client request from browser.
+          -import express, dotenv and cors in index.js
+          -create express server using express package
+          -use cors in our server app, to enable data sharing between different applications.
+          -use express.json() in server app for parsing json data from client request
+          -create port for server app
+          -run server app in specified port
+          -run server using command : node index.js
+          -to resolve http request using express server:
+                  -express_server_name.httpRequestMethod("path",(request,response)=>{
+                     using response object share server response to client
+                  })
+   NB:- nodemon:for refresh and load page: npm i -g nodemon (for globally in the common folder)|| npm i nodemon (in the server folder) 
+          
+          - server has to use express.static(static file/folder path) to export static file/folder from server
+
+         :-:How to setup path/URL for resolving client request in server.
+              -Create routes folder in server folder & create a js file inside the routes folder for defining path/route corresponding to client request.
+              -steps to define path in that js file:
+                  -import express
+                  -create an object for express router class which is capable of setting up routes in server.
+                  -export the object of express Router class
+                  -import object of express Router class and use router in server application.
+                  -to setup the route, syntax:-
+                    -RouterObject.httpRequestMethod('path', controllerName)
+
+         :-:To setup controller for server app: used to define logic to resolve client request
+              -create a folder controllers in server, and create a js file inside it for defining logic to resolve client request
+              -export each controller logic from js file
+              -import controller in router.js file and use the controller in corresponding request. 
+              -syntax of controller:
+                 -controllerName = (request,response)=>{
+                  using response object share server response to client
+                 }      
+              -To setup database connection from NodeJs server
+                 -create a folder for defining db connection in server folder
+                 -inside db folder create js file to define connection steps
+                    -import mongoose
+                    -get db connection string from mongodb Atlas to js file.
+                    -To connect with MongoDB use connect method of mongoose pass connection string as argument. it will return promise.
+                    -import js file in index.js file
+              -To set model for communicating node js and mongoDB
+                  -create model folder in server folder
+                  -create js file inside the folder for craeting model  
+                  -create model using schema
+                  -export model  
+              -To setp the Authorization using middleware 
+                  -create folder for middleware in server folder
+                  -create a js file inside that folder  to define midleware and export middleware
+                  -use middleware in route before controller
+              - To handle multyipart/form request using multer
+                  -create a js file inside middleware folder    
+                  -import multer 
+                  -create a 'upload' folder in server for storing uploaded files.
+                  -define storage object in js file
+                  -created multer instance using the storage and export it from tht file, use it in route
+
+
+MONGOOSE:NODE JS PACKAGE FOR MONGODB DATA MODELING :(to connect node with mongoDB)
+-----------------------------------------------------------
+1.Mongoose is an ODM(object data modelling) library for mongoDB, helps to create and manage mongoDB documents with node js
+2.Install mongoose in node js app : npm i mongoose 
+3.schema: A schema defines the structure of your collection documents. A mongoose schema maps directly to a mongoDB collection. To create a schema we have to create object for mongoose 'Schema' class.
+4.Models take your schema & apply it to each document in its collection. Create model in mongoose, use model method, syntax: model('modelName',schema)
+    -Models are responsible for all document interaction like creating, reading, updating and deleting(CRUD)
+5. In node js, controller will communicate with model inorder to manage data in MongoDB
+6.CRUD operations in mongoose.
+   -To create a document using mongoosein mongodb, create an object of model with same order of its schema, after taht we have to save the object inorder to appear changes in mongoDB using save() method mongoose.
+   -Read /get document from mongoDB: find(),findOne(),findById()   
+   -Update a document: updateOne(), updateMany(), findByIdandUpdate(_id of document, update query)
+   -Delete document: deleteOne(), deleteMany(), findByIdandDelete(_id of document)
+7.Mongoose query helpers: skip(), limit(),sort()   
+
+
+
+   JWT (JSON WEB TOKEN): NODE JS PACKAGE FOR AUTHENTICATION
+ ------------------------------------------------------------------------
+ 1.Install jsonwebtoken library: npm i jsonwebtoken   (install in server folder)
+ 2.Token generation using jwt : sign(payload, password)
+     -payload: used to store data inside token creation
+ 3.Token verify using JWT: verify(token,password) return a response if token is verified else error
+
+
+      Middleware: NODE JS 
+------------------------------------------------------------------------
+1.used to control request-response cycle in server. Before resolving the request server can perform and task(authorization, data format changing etc...) using middleware.
+2.Middleware are function, with 3 arguments, they are request, response, next.
+      - Here request will give you client request, 
+      - response object will give response from server to client
+      - next method is used to control request 
+3.Middleware can be 2 types: 
+      -Application specific middleware: middleware will active for all client request. (eg:express.json)
+      -Router specific middleware: middleware will active for only selected route/path.     
+
+
+MULTER:NODE JS MIDDLEWARE FOR HANDLING MULTIPART/FORM DATA
+-----------------------------------------------------------
+
+1.Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files. It is written on top of busboy for maximum efficiency. 
+2.Multer adds a body object and a file or files object to the request object. The body object contains the values of the text fields of the form, the file or files object contains the files uploaded via the form.
+3. Install multer: npm i multer
+4.Multer can used to define storage space for uploading file

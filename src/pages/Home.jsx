@@ -1,9 +1,40 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import landingImg from '../assets/landingImg.png'
 import ProjectCard from "../components/ProjectCard"
 import { Card } from 'react-bootstrap'
+import { getHomeProjectAPI } from '../services/allAPI'
 const Home = () => {
+
+  const [allHomeProjects,setAllHomeProjects]=useState([])
+
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    getAllHomeProjects()
+  },)
+
+  const getAllHomeProjects = async ()=>{
+    try{
+      const result = await getHomeProjectAPI()
+      if(result.status == 200){
+        setAllHomeProjects(result.data)
+      }
+
+    }catch(err){
+      console.log(err);
+      
+    }
+  }
+
+  const handleProjects=()=>{
+   if(sessionStorage.getItem("token")){
+    navigate("/projects")
+   }else{
+    alert("Please login!!!")
+   }
+  }
+
   return (
     <>
       <div className='min-vh-100 d-flex justify-content-center align-items-center rounded shadow w-100'>
@@ -12,7 +43,12 @@ const Home = () => {
             <div className='col-lg-6'>
               <h1 style={{ fontSize: '80px' }}> <i class="fa-brands fa-docker"></i> Project Fair</h1>
               <p style={{ textAlign: 'justify' }}>One Step Destination for all Software Development Projects. Where User can add and manage their projects. As well as access all projects available in our website... What are you waiting for!!!</p>
-              <Link to={'/login'} className='btn btn-warning'>Start to explore</Link>
+              {
+                sessionStorage.getItem("token")?
+                <Link to={'/dashboard'} className='btn btn-warning'>MANAGE YOUR PROJECTS</Link>
+                :
+                <Link to={'/login'} className='btn btn-warning'>Start to explore</Link>
+              }
 
             </div>
             <div className='col-lg-6'>
@@ -33,12 +69,16 @@ const Home = () => {
         <h1 className='mb-5'>Explore our projects</h1>
         <marquee >
           <div className='d-flex'>
-            <div className='me-5'>
-              <ProjectCard />
+            {
+              allHomeProjects?.map(project=>(
+                <div className='me-5'>
+              <ProjectCard displayData={project}/>
             </div>
+              ))
+            }
           </div>
         </marquee>
-        <button className='btn btn-link mt-5'>Click here to view More Projects...</button>
+        <button onClick={handleProjects} className='btn btn-link mt-5'>Click here to view More Projects...</button>
       </div>
 
       <div className='d-flex justify-content-center align-items-center mt-5 flex-column'>
