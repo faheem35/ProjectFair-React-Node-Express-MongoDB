@@ -22,7 +22,7 @@ const HeaderBlock = ({insideDashboard}) => {
         <Link to={'/'} style={{ textDecoration: 'none' }}>
           <Navbar.Brand style={{ color: 'white' }} className='fw-bolder'>
             <i class="fa-brands fa-docker me-3"></i>
-            Project Fair
+            ProjectVerse
           </Navbar.Brand>
         </Link>
         {

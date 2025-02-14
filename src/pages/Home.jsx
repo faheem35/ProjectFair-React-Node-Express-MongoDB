@@ -41,7 +41,7 @@ const Home = () => {
         <div className='container'>
           <div className='row align-items-center'>
             <div className='col-lg-6'>
-              <h1 style={{ fontSize: '80px' }}> <i class="fa-brands fa-docker"></i> Project Fair</h1>
+              <h1 style={{ fontSize: '80px' }}> <i class="fa-brands fa-docker"></i> ProjectVerse</h1>
               <p style={{ textAlign: 'justify' }}>One Step Destination for all Software Development Projects. Where User can add and manage their projects. As well as access all projects available in our website... What are you waiting for!!!</p>
               {
                 sessionStorage.getItem("token")?

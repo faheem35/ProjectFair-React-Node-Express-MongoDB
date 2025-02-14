@@ -10,9 +10,9 @@ const Footer = () => {
         <div>
         <h5>
         <i class="fa-brands fa-docker me-3"></i>
-        Project Fair
+        ProjectVerse
         </h5>
-        <p>Designed and built with all the love in the world <br /> by the Luminar team with the help of our contributors.</p>
+        <p>Designed and built with all the love in the world <br /> by the ProjectVerse with the help of our contributors.</p>
         <p>Code licensed MIT, docs CC BY 3.0.</p>
         <p>Currently v5.3.3.</p>
         
@@ -48,7 +48,7 @@ const Footer = () => {
         </div>
         </div>
         </div>
-      <p className='text-center mt-3'>Copyright ©Media Player Inc. All rights reserved.</p>
+      <p className='text-center mt-3'>Copyright ©ProjectVerse Inc. All rights reserved.</p>
     </div>
   )
 }

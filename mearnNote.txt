@@ -532,7 +532,6 @@
 -------------------------------------------------------------------
                   JavaScript : Front End
 --------------------------------------------------------------------
-
              1.used to provide behaviour to HTML elements
              2.applying js in HTML elements
                -internal js-js code in script tag
@@ -724,9 +723,6 @@
     ------------------------------------------------------------------------------
                     REACT:  Advanced Frontend Application Library
     ------------------------------------------------------------------------------
-
-   
-
 1) Basic React:
   -React application is a colection of diff libraries. all the wanted datas is not in libarary. so we need to use third party.
   -React app is consist of diff "components" which used to display contents on browser.[ All the components are arranged in a tree structure. [Tree structure has a single parent/ root node which is by default known as "APP COMPONENT", components are reusable.
@@ -751,12 +747,12 @@
 
 2.REACT APP creation:
     2 ways:
-     1)CRA (using create-react-app command): time consuming
+     1)CRA (using create-react-app command): time consuming and conventional method.
     
      2)vite: tool for building web applications 
         -Installing git globally: npm i -g create-vite  
         -React app creation using Vite: npm create vite@latest  reactAppname -- --template react
-      -- to generate dist folder to deploy react app using netlify: npm run build
+       -- to generate dist folder to deploy react app using netlify: npm run build
 
      3)Files and folder structure of react app using vite
         -package.json file:  npm configuration file for the project.
@@ -773,7 +769,7 @@
           -assets folder: used to hold media files used in react project.
        ------------------------------
         -to run: npm run dev
-        -----------------------------
+       -----------------------------
         
       4) Components: used to display content in browser, to create component create jsx or js file with filename starting capital letters.
        -create component in 2 ways  :
@@ -800,7 +796,7 @@
           -------------------------                   -------------------------
           1.using class to create ,                   1.using js pure functions and return jsx
            render method must return jsx              
-          2.statefull componet                        2.stateless component
+          2.stateful componet                         2.stateless component
           3.Hooks are not used                        3.Hooks are used
           4.constructor is used to initialize         4.No need of constructor
            state   
@@ -808,8 +804,8 @@
           are available           
 
 
-      5)Data sharing b/w raect componnets
-        -data can be transfer from parent to child: use "props" object 
+      5)Data sharing b/w raect componnets 
+        -data can be transfer from parent to child: use "props" object :es module system
       
       6)props: Is a property of a component. [it's an object used to transfer data from parent to child, parent data can be shared via child tag attribute. [ to access parent data in to child use props as an argument in child component function.
 
@@ -872,6 +868,7 @@
             
             -Dynamic Routing: we can setup a dynamic or changing value in a url along : symbol, so react app will understand the value along with a: is dynamic part of this url.
             -To setup page not found url as path *, its path must be setup ath the end of .....
+
       15) Higher order components(HOC): they are componnets whose props argumentt will give another componnet. eg: Route componnet.        
 
       16) Axios call in react: 
@@ -887,7 +884,7 @@
             -using Context API
 
       ---------------------------------------------------------------------------------------------------
-                                               Context API - Data sharing methods in React
+                          Context API - Data sharing methods in React
       --------------------------------------------------------------------------------------------------  
       1.Avoid props drilling while sharing data between components
       2.To share data it uses context of react, with the help of context we can share data inside.     
@@ -903,27 +900,19 @@
         -use children props inside the component to get all children of it
         -wrap the component inside root component of react app inside main.jsx file    
 
-        ---------------------------------------------------------------------------------------------------
-                                               JSON server creation
-         --------------------------------------------------------------------------------------------------         
-
+   ---------------------------------------------------------------------------------------------------
+                             JSON server creation
+   --------------------------------------------------------------------------------------------------      
 1. create a server folder to store json file
 2. create a package.json (npm configuration file)file inside server folder : use command: npm init -y
-3. install json-server package in server folder to run json file, use command to install json-server: npm i json-server
+3. install json-server package in server folder to run json file, use command to install json-server: npm i json-server@0.17.4 
 4. create json(db.json) file for storing project data
 5. To run json file and available in browser port use command in server folder: npx json-server db.json  
 
 
-
-   --------------------------------------------------------------------------------------------------------
-                                        JSON server Deployement
-   ---------------------------------------------------------------------------------------------------------           
-
-1.remove beta from json server
-2. stop the terminal of server
-3. run in server terminal: npm i json-server@0.17.4 
-
-
+--------------------------------------------------------------------------------------------------------
+                               JSON server Deployement
+---------------------------------------------------------------------------------------------------------  
 1.create a index.js file inside server folder
 2.update script key of package.json file with{"start":"node index.js"} and remove test key from it
 3. create .gitignore file, to node_modules inside it
@@ -938,11 +927,10 @@
          -to execute our app we have to use node index.js in terminal, so that we can see the output in localhost:3000
 
 
-         ---------------------------------------
-            Redux( to avoid props drilling)
-         ---------------------------------------
-
-   1)  * A JS library for predictable and maintainable global state management
+   ---------------------------------------------------------------------------------------------------
+             Redux( to avoid props drilling)
+   ---------------------------------------------------------------------------------------------------
+   1)   A JS library for predictable and maintainable global state management
          
    2)   Redux consists of 2 packages:-
         *) react-redux (reactinte features reduxilkk kondaraan)-----------provider, useDispatch Hook, useSelector Hook
@@ -989,7 +977,6 @@
  ----------------------------------------------------------------------------------------------------------
                                   MOGODB - DATABASE
 -----------------------------------------------------------------------------------------------------------
-
           1.DATABASE used to store and manage data permanantly(firebase, mysql,sql,maaccess, mongodb, oracle,..)
           2.MongoDB : is a nosql database, data stored as JSON documnets ({"key":value}).  it stored in memory as BSON, To store multiple JSON documentis known as Collection.
           3. Difference b/w SQL and MongoDB
@@ -1130,6 +1117,7 @@
          -mongoose package: used to communicate b/w nodejs app and mongoDB
          -jsonwebtoken:used for authorization
          -multer:handle form/multipart data
+
      -Create .env file in server folder, which is uesd to store environmental variable of a project/app(which stores secure datas of the project)
      -Create .gitignore file in server folder, which is used to store files/folders to be ignored while adding to git and add node_modules and .env    
      -Create index.js file to define express server for resolving client request from browser.
@@ -1182,7 +1170,7 @@
                   -create folder for middleware in server folder
                   -create a js file inside that folder  to define midleware and export middleware
                   -use middleware in route before controller
-              - To handle multyipart/form request using multer
+              - To handle multipart/form request using multer
                   -create a js file inside middleware folder    
                   -import multer 
                   -create a 'upload' folder in server for storing uploaded files.
@@ -1229,7 +1217,6 @@ MONGOOSE:NODE JS PACKAGE FOR MONGODB DATA MODELING :(to connect node with mongoD
 
 MULTER:NODE JS MIDDLEWARE FOR HANDLING MULTIPART/FORM DATA
 -----------------------------------------------------------
-
 1.Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files. It is written on top of busboy for maximum efficiency. 
 2.Multer adds a body object and a file or files object to the request object. The body object contains the values of the text fields of the form, the file or files object contains the files uploaded via the form.
 3. Install multer: npm i multer
