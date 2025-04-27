@@ -23,7 +23,7 @@ export const getHomeProjectAPI=async()=>{
           return await commonAPI("GET",`${SERVER_URL}/home-project`,{})
 }
 
-//allProjectAPI called by projects compoenent when page loaded in browser (useEffect())
+//allProjectAPI called by projects page when page loaded in browser (useEffect())
 export const allProjectAPI=async(searchKey,reqHeader)=>{
           return await commonAPI("GET",`${SERVER_URL}/all-project?search=${searchKey}`,{},reqHeader)
 }

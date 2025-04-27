@@ -21,8 +21,8 @@ const HeaderBlock = ({insideDashboard}) => {
       <Container>
         <Link to={'/'} style={{ textDecoration: 'none' }}>
           <Navbar.Brand style={{ color: 'white' }} className='fw-bolder'>
-            <i class="fa-brands fa-docker me-3"></i>
-            ProjectVerse
+            <i class="fa-brands fa-docker me-1"></i>
+         ProjectVerse
           </Navbar.Brand>
         </Link>
         {

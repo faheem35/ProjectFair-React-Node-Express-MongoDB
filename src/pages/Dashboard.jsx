@@ -15,7 +15,7 @@ const Dashboard = () => {
   return (
    <>
       <HeaderBlock insideDashboard={true}/>  {/*conditional rendering  */}
-     <div style={{paddingTop:'100px'}} className='container-fluid'>
+     <div style={{paddingTop:'100px',}} className='container-fluid' >
       <div className='row mt-3'>
         <div className="col-lg-8">
           <h1>Welcome <span className='text-warning'>{userName},</span></h1>
