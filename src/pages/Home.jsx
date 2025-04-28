@@ -375,7 +375,7 @@ const Home = () => {
                 <i className="fa-brands fa-docker"></i> ProjectVerse
               </h1>
               <p className="mt-3" style={{ textAlign: 'justify' }}>
-                One Step Destination for all Software Development Projects. Where users can add and manage their projects as well as access all projects available on our website... What are you waiting for!!!
+              Your ultimate hub for all software development projects — add, manage, and <br />explore a wide range of projects in one place. Start your journey today!
               </p>
               {sessionStorage.getItem("token") ? (
                 <Link to="/dashboard" className="btn btn-warning mt-3">MANAGE YOUR PROJECTS</Link>
@@ -424,7 +424,7 @@ const Home = () => {
                     width="60px"
                     height="60px"
                     className="rounded-circle img-fluid mb-2"
-                    src="https://png.pngtree.com/png-clipart/20231019/original/pngtree-user-profile-avatar-png-image_13369988.png"
+                    src="https://png.pngtree.com/png-clipart/20231019/original/pngtree-user-profile-avatar-png-image_13369989.png"
                     alt="User"
                   />
                   <div>Max Miller</div>
@@ -480,7 +480,7 @@ const Home = () => {
                     width="60px"
                     height="60px"
                     className="rounded-circle img-fluid mb-2"
-                    src="https://png.pngtree.com/png-clipart/20231019/original/pngtree-user-profile-avatar-png-image_13369988.png"
+                    src="https://static.vecteezy.com/system/resources/previews/035/066/209/non_2x/user-avatar-male-illustration-design-free-png.png"
                     alt="User"
                   />
                   <div>Shariq</div>
@@ -508,7 +508,7 @@ const Home = () => {
                     width="60px"
                     height="60px"
                     className="rounded-circle img-fluid mb-2"
-                    src="https://png.pngtree.com/png-clipart/20231019/original/pngtree-user-profile-avatar-png-image_13369988.png"
+                    src="https://cdn3.iconfinder.com/data/icons/avatars-flat/33/man_5-1024.png"
                     alt="User"
                   />
                   <div>Hamid</div>
